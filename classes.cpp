@@ -57,12 +57,12 @@ public:
 
  float get(int i, int j)
  {
-     return data[i*n+j];
+     return data[j*n+i];
  }
 
  void set(int i, int j, float d)
  {
-     this->data[i*n+j] = d;
+     this->data[j*m+i] = d;
  }
 
  virtual int getN()
@@ -180,7 +180,6 @@ virtual float determinant()
     int s;
     for(int l = 0; l < getM(); l++)
     {
-        int count = 0;
         if(tmp.get(l,l) == 0)
         {
             s=l+1;
@@ -198,7 +197,7 @@ virtual float determinant()
                 }
                 s++;
             }
-            if(getN()<s)
+            if(getN()<=s)
                 return 0;
         }
         for(int j =l+1; j < getM(); j++) // это строчки
@@ -208,19 +207,25 @@ virtual float determinant()
                     tmp.set(j,i,tmp.get(j,i)-k*tmp.get(l,i));
             }
     }
-    tmp.print(cout);
-    cout << endl;
+    //tmp.print(cout);
     float det = get(0,0);
     for(int i = 1; i < getN(); i++)
       det *=tmp.get(i,i);
+    cout << endl<< endl<<det<<endl;
     return det;
 }
 
 
  virtual matr reverse()
 {
+
     if (failed()||(getN()!=getM()))
-    float D=this->determinant();
+    {
+        matr A (0,0);
+        return A;
+    }
+    int g;
+    float D =this->determinant();
     if(D == 0)
         {
             matr A;
@@ -232,25 +237,25 @@ virtual float determinant()
     {
         for(int l=0; l<getN(); l++)
         {
-            
-            
-            for (int i = 0; i < m; i++)
+            g=0;
+
+            for (int i = 0; i < getN(); i++)
             {
                 if (i == k) continue;
                 if (getN() <= i) break;
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < getN(); j++)
                 {
                     if (j == l) continue;
-                    if (m <= i) break;
-                    B.set(g,0,this->get(j,i)); 
+                    if (getN() <= i) break;
+                    B.set(g,0,this->get(j,i));
+                    cout<<this->get(j,i);
                     g++;
-                } 
+                }
             }
                 A.set(l,k,B.determinant()/D);
             }
 }
-~matr(B);
-return A;
+return matr(A);
 
 }
  ostream& print(ostream& o)
