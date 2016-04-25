@@ -1,390 +1,294 @@
 #include <iostream>
- 
- 
- 
+#include <stdlib.h>
+
 using namespace std;
- 
- 
- 
-ostream& operator<<(ostream& o, string& s)
- 
+
+class matr
 {
- 
-    o << s.c_str();
- 
-    return o;
- 
-}
- 
- 
- 
-istream& operator>>(istream& i, string& s)
- 
-{
- 
-    char buf[256];
- 
-    i >> buf;
- 
-    string tmp(buf);
- 
-    s = tmp;
- 
- 
- 
-    return i;
- 
-}
- 
- 
- 
- 
- 
-template<typename T>
- 
-class AbstractList
- 
-{
- 
-protected:
- 
-    T _default;
- 
+ int m;
+ int n;
+ float* data;
 public:
- 
-    virtual void sort(bool(*f) (T* first, T* second)) = 0;
- 
-    virtual T get(int index) = 0;
- 
-    virtual void set(int index, T data) = 0;
- 
-    virtual void insert(int index, T data) = 0;
- 
-    virtual T remove(int index) = 0;
- 
-    virtual int len() = 0;
- 
-    void push(T data)
- 
+ matr()
+ {
+     m=1;
+     n=1;
+     data = NULL;
+ }
+
+ matr(int m_, int n_)
+ {
+     m = m_;
+     n = n_;
+     data = new float[m*n];
+     for(int i=0; i < m*n; i++)
+     {
+         data[i] = 0;
+     }
+
+ }
+ ~matr()
+ {
+     delete data;
+ }
+
+ matr(const matr& A)
+ {
+     m = A.m;
+     n = A.n;
+     data = new float[n*m];
+     for (int i = 0; i < n*m; i++)
+         data[i] = A.data[i];
+ }
+
+
+ matr& operator=(matr& A)
+ {
+    m = A.getM();
+    n = A.getN();
+    delete data;
+    data = new float[m*n];
+    for(int i = 0; i < m*n; i++)
     {
-      
-        insert(0, data);
- 
+      data[i] = A.get(0,i);
     }
- 
-    virtual T pop()
- 
-    {
- 
-        if (empty())
- 
-            return _default;
- 
-        else
- 
-            return remove(0);
- 
-    }
- 
- 
- 
-    virtual bool empty()
- 
-    {
- 
-        return len() == 0;
- 
-    }
- 
- 
- 
-    virtual ostream& print(ostream& o)
- 
-    {
- 
-        for (int i = 0; i < len(); i++)
- 
-        {
- 
-            o << get(i) << endl;
- 
-        }
- 
-        return o;
- 
-    }
- 
- 
- 
-    virtual istream& read(istream& in)
- 
-    {
- 
-        int count;
- 
-        in >> count;
-        for (int i = 0; i < count; i++)
-        {
- 
-            T tmp;
- 
-            in >> tmp;
- 
-            insert(len(), tmp);
- 
-        }
- 
-        return in;
- 
-    }
- 
- 
- 
-};
- 
- 
- 
-template<typename T>
- 
-class zuzu : public AbstractList<T>
- 
+    return *this;
+ }
+
+ float get(int i, int j)
+ {
+     return data[i*n+j];
+ }
+
+ void set(int i, int j, float d)
+ {
+     this->data[i*n+j] = d;
+ }
+
+ virtual int getN()
+ {
+     return n;
+ }
+
+ virtual int getM()
+ {
+         return m;
+ }
+
+matr operator+(matr& A)
+ {
+    if((m!=A.getM())||(n!=A.getN()))
 {
- 
-    T _data;
- 
-    zuzu* next;
- 
-protected:
- 
-    T _default;
- 
-public:
- 
-    zuzu()
-    {
-        this->next = NULL;
-    }
- 
-    zuzu(T def, T data)
- 
-    {
- 
-        this->_data = data;
- 
-        this->_default = def;
- 
-        this->next = NULL;
- 
-    }
- 
-    virtual ~zuzu()
-    {
-        if (next != NULL)
-            delete next;
-    }
- 
-   
-    virtual T get(int index)
- 
-    {
-        if (index > len())
-            return _default;
-        zuzu* tmp = this->next;
-        int i = 0;
-        while ((i != index))
+        return A;
+}
+        matr* C=new matr(getM(),getN());// = matr(m,n);
+        for(int i = 0; i < m*n; i++)
         {
-            tmp = tmp->next;
-            i++;
+          C->data[i] = data[i] + A.get(0,i);
         }
-        return tmp->_data;
- 
-    }
- 
-    virtual void set(int index, T data)
- 
+    return *C;
+ }
+
+
+
+
+ matr operator*(matr& A)
+ {
+    if(getM() !=n)
     {
- 
-        zuzu* tmp = this;
- 
-        for (int i = 0; i < index; i++)
- 
-        {
- 
-            if (next != NULL)
- 
-                tmp = tmp->next;
- 
-        }
- 
-        tmp->_data = data;
- 
+        matr* C = new matr();
+        return *C;
     }
- 
-    virtual void insert(int index, T data)
-    {
-        zuzu* tmp = this;
-        int i = 0;
-        zuzu* a = new zuzu(_default, data);
-        while ((tmp->next != NULL)&& (i != index))
-        {
-            tmp = tmp->next;
-            i++;
-        }
-        a->next = tmp->next;
-        tmp->next = a;
-        return;
-    }
-   
-    virtual T remove(int index)
- 
-    {
- 
-        if (len() == 0)
-        {
-            return this->_default;
-        }
-        zuzu* tmp = this;
-        if (index == 1)
-        {
-            T str = this->_data;
-            this->_data = this->next->_data;
-            //this->next = this->next->next;
-            tmp = this->next->next;
-            this->next->next = NULL;
-            delete this->next;
-            this->next = tmp;
-            return str;
-        }
-        else
-        {
-            for (int i = 1; i < index; i++)
- 
+    matr B(getN(), m);
+    for(int i = 0; i < getN(); i++)
+        for(int j = 0; j < m; j++)
+            for(int l = 1; l <= n; l++)
             {
- 
-                if (tmp->next != NULL)
- 
-                    tmp = tmp->next;
- 
+                B.data[i*n+j] += get(i,j)*A.data[l*n+j];
             }
- 
-            zuzu* del = tmp->next;
- 
-            T Str = del->_data;
- 
-            tmp->next = tmp->next->next;
- 
-            del->next = NULL;
- 
-            delete del;
- 
-            return Str;
- 
-        }
+    return B;
+
+ }
+
+ matr operator*(float& l)
+ {
+    matr* B = new matr(m,n);
+    for (int i = 0; i < m*n; i++)
+    {
+        B->data[i] = l*data[i];
     }
- 
-    /*
-    virtual zuzu* operator = (zuzu* a)
-    {
-    this->_data = a->_data;
-    this->next = a->next;
-    this->_default = a->_default;
-    return this;
-    }*/
- 
-    virtual int len()
- 
-    {
-        int i = 0;
-        zuzu* tmp = this;
-        while (tmp->next != NULL)
+    return *B;
+ }
+
+ matr operator-(matr& A)
+ {
+    if((m!=A.getM())||(n!=A.getN()))
+{
+        return A;
+}
+        matr* C=new matr(getM(),getN());// = matr(m,n);
+        for(int i = 0; i < m*n; i++)
         {
-            i++;
-            tmp = tmp->next;
+          C->data[i] = data[i] - A.get(0,i);
         }
-        return i;
-    }
- 
- 
-    virtual void sort(bool(*f) (T* first, T* second))
- 
+    return *C;
+ }
+
+
+matr transpose()
+ {
+   float* tmp = new float[n*m];
+   matr mat(n,m);
+   mat.n = n;
+   mat.m = m;
+   for (int i = 0; i < n; i++)
+      for (int j = 0; j < m; j++)
+         tmp[j*n + i] = data[i*n + j];
+         mat.data = tmp;
+         return matr(mat);
+
+ }
+ /*float det(int z,int x)
+ {
+     if(z==m)
+         return 1;
+     int sgn=1; float pmt=0;
+     while(z<m)
+     {
+         z++;
+         pmt=pmt+data[z*n-n+x]*det(z,x+(x-1)*sgn);
+         x++;
+         sgn=sgn*(-1);
+     }
+     return pmt;
+ }
+
+ virtual float determinant()
+ {   if(n != m)
+     {
+         return 0;
+     }
+     int z=0,x=0;
+
+   return det(x,z);
+
+ }*/
+virtual float determinant()
+{
+    matr tmp = *this;
+    float k=0;
+    int s;
+    for(int l = 0; l < getM(); l++)
     {
- 
-        zuzu* tmp = this;
- 
-        zuzu* prev = this;
- 
-        zuzu* tmp1 = this;
- 
-        zuzu* future = this;
- 
-        for (int i = 0; i<len(); i++)
- 
+        int count = 0;
+        if(tmp.get(l,l) == 0)
         {
- 
-            for (int n = 0; n<len() - 1; n++)
- 
+            s=l+1;
+            while(s<getN())
             {
- 
-                if (f(&(tmp->_data), &(tmp->next->_data)) == true)
- 
+                if(tmp.get(l,s) != 0)
                 {
- 
-                    tmp1 = tmp->next;
- 
-                    future = tmp->next->next;
- 
-                    prev->next = tmp1;
- 
-                    tmp1->next = tmp;
- 
-                    tmp->next = future;
- 
+                    for(int z=l;z<getM();z++)
+                    {
+                        k=-tmp.get(z,l);
+                        tmp.set(z,l,tmp.get(z,s));
+                        tmp.set(z,s,k);
+                    }
+                    s=getN();
                 }
- 
-                prev = tmp;
- 
-                tmp = tmp->next;
- 
+                s++;
             }
- 
+            if(getN()<s)
+                return 0;
         }
- 
- 
- 
+        for(int j =l+1; j < getM(); j++) // это строчки
+            {
+                k = tmp.get(j,l) / tmp.get(l,l);
+                for(int i =l+1 ; i < getN(); i++) //это столбцы
+                    tmp.set(j,i,tmp.get(j,i)-k*tmp.get(l,i));
+            }
     }
- 
- 
- 
-};
- 
- 
- 
-template <typename T>
- 
-bool morer(T* first, T* second)
- 
-{
- 
-    return *first>*second;
- 
+    tmp.print(cout);
+    cout << endl;
+    float det = get(0,0);
+    for(int i = 1; i < getN(); i++)
+      det *=tmp.get(i,i);
+    return det;
 }
- 
- 
- 
-AbstractList<string>* get_init()
- 
+
+
+ virtual matr reverse()
 {
- 
-    string e("EMPTY!");
- 
-    string d("Hello world!");
- 
-    zuzu<string>* s = new zuzu<string>(e, d);
- 
-    //string test("test");
- 
-    //s->set(0, test);
- 
-    return s;
- 
+    if (failed()||(getN()!=getM()))
+    float D=this->determinant();
+    if(D == 0)
+        {
+            matr A;
+            return A;
+        }
+    matr A(getN(),getN());
+    matr B(getN()-1,getN()-1);
+    for(int k=0; k<getN(); k++)
+    {
+        for(int l=0; l<getN(); l++)
+        {
+            
+            
+            for (int i = 0; i < m; i++)
+            {
+                if (i == k) continue;
+                if (getN() <= i) break;
+                for (int j = 0; j < n; j++)
+                {
+                    if (j == l) continue;
+                    if (m <= i) break;
+                    B.set(g,0,this->get(j,i)); 
+                    g++;
+                } 
+            }
+                A.set(l,k,B.determinant()/D);
+            }
+}
+~matr(B);
+return A;
+
+}
+ ostream& print(ostream& o)
+ {
+     for(int i = 0; i < m*n; i++)
+     {
+         if(i%m == 0) o<<endl;
+         o<<data[i]<<" ";
+     }
+     return o;
+ }
+
+
+ istream& read(istream& o)
+ {
+     delete data;
+     o >> m >> n;
+     float* d = new float[m*n];
+     data = d;
+     for (int i = 0; i < m*n; i++)
+     {
+         o >> data[i];
+     }
+     return o;
+ }
+
+
+
+ bool failed()
+ {
+     return ((data == NULL) || (n <= 0) || (m <= 0));
+ }
+
+};
+
+
+matr* get_init(int n, int m)
+{
+    matr* q = new matr(n, m);
+            return q;
 }
