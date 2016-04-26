@@ -148,31 +148,7 @@ matr transpose()
          return matr(mat);
 
  }
- /*float det(int z,int x)
- {
-     if(z==m)
-         return 1;
-     int sgn=1; float pmt=0;
-     while(z<m)
-     {
-         z++;
-         pmt=pmt+data[z*n-n+x]*det(z,x+(x-1)*sgn);
-         x++;
-         sgn=sgn*(-1);
-     }
-     return pmt;
- }
 
- virtual float determinant()
- {   if(n != m)
-     {
-         return 0;
-     }
-     int z=0,x=0;
-
-   return det(x,z);
-
- }*/
 virtual float determinant()
 {
     matr tmp = *this;
@@ -207,7 +183,7 @@ virtual float determinant()
                     tmp.set(j,i,tmp.get(j,i)-k*tmp.get(l,i));
             }
     }
-    //tmp.print(cout);
+  
     float det = get(0,0);
     for(int i = 1; i < getN(); i++)
       det *=tmp.get(i,i);
