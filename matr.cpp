@@ -32,7 +32,7 @@ public:
      delete data;
  }
 
- matr(const matr& A)
+ Matrix(const matr& A)
  {
      m = A.m;
      n = A.n;
