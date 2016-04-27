@@ -1,0 +1,123 @@
+cur.cpp:18:1: error: 'Matrix' does not name a type
+ Matrix *get_init(int, int);
+ ^
+cur.cpp: In member function 'virtual void MatrixTest_GetNM_Test::TestBody()':
+cur.cpp:22:5: error: 'Matrix' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+     ^
+cur.cpp:22:12: error: 'm' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+            ^
+cur.cpp:25:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
+cur.cpp:29:7: error: 'Matrix' was not declared in this scope
+       Matrix*m = get_init(5, 5);
+       ^
+cur.cpp:29:14: error: 'm' was not declared in this scope
+       Matrix*m = get_init(5, 5);
+              ^
+cur.cpp:34:12: error: expected ';' before 'c'
+     Matrix c = m->reverse();
+            ^
+In file included from /usr/pkg/include/gtest/gtest.h:1798:0,
+                 from cur.cpp:14:
+cur.cpp:38:38: error: 'c' was not declared in this scope
+       EXPECT_EQ((int)(i == j), (int)(c.get(i,j)+0.5)); 
+                                      ^
+/usr/pkg/include/gtest/gtest_pred_impl.h:77:52: note: in definition of macro 'GTEST_ASSERT_'
+   if (const ::testing::AssertionResult gtest_ar = (expression)) \
+                                                    ^
+/usr/pkg/include/gtest/gtest_pred_impl.h:162:3: note: in expansion of macro 'GTEST_PRED_FORMAT2_'
+   GTEST_PRED_FORMAT2_(pred_format, v1, v2, GTEST_NONFATAL_FAILURE_)
+   ^
+/usr/pkg/include/gtest/gtest.h:1847:3: note: in expansion of macro 'EXPECT_PRED_FORMAT2'
+   EXPECT_PRED_FORMAT2(::testing::internal:: \
+   ^
+cur.cpp:38:7: note: in expansion of macro 'EXPECT_EQ'
+       EXPECT_EQ((int)(i == j), (int)(c.get(i,j)+0.5)); 
+       ^
+cur.cpp:40:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp:47:5: error: 'c' was not declared in this scope
+     c = m->reverse();
+     ^
+cur.cpp:63:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp: In member function 'virtual void MatrixTest_Transpose_Test::TestBody()':
+cur.cpp:69:5: error: 'Matrix' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+     ^
+cur.cpp:69:12: error: 'm' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+            ^
+cur.cpp:74:12: error: expected ';' before 'c'
+     Matrix c = m->transpose();
+            ^
+In file included from /usr/pkg/include/gtest/gtest.h:1798:0,
+                 from cur.cpp:14:
+cur.cpp:78:36: error: 'c' was not declared in this scope
+       EXPECT_EQ((int)(cc++), (int)(c.get(i,j)+0.5));
+                                    ^
+/usr/pkg/include/gtest/gtest_pred_impl.h:77:52: note: in definition of macro 'GTEST_ASSERT_'
+   if (const ::testing::AssertionResult gtest_ar = (expression)) \
+                                                    ^
+/usr/pkg/include/gtest/gtest_pred_impl.h:162:3: note: in expansion of macro 'GTEST_PRED_FORMAT2_'
+   GTEST_PRED_FORMAT2_(pred_format, v1, v2, GTEST_NONFATAL_FAILURE_)
+   ^
+/usr/pkg/include/gtest/gtest.h:1847:3: note: in expansion of macro 'EXPECT_PRED_FORMAT2'
+   EXPECT_PRED_FORMAT2(::testing::internal:: \
+   ^
+cur.cpp:78:7: note: in expansion of macro 'EXPECT_EQ'
+       EXPECT_EQ((int)(cc++), (int)(c.get(i,j)+0.5));
+       ^
+cur.cpp:79:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp: In member function 'virtual void MatrixTest_SetGet_Test::TestBody()':
+cur.cpp:82:5: error: 'Matrix' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+     ^
+cur.cpp:82:12: error: 'm' was not declared in this scope
+     Matrix*m = get_init(3, 4);
+            ^
+cur.cpp:94:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp: In member function 'virtual void MatrixTest_FailedM_Test::TestBody()':
+cur.cpp:98:5: error: 'Matrix' was not declared in this scope
+     Matrix *m = get_init(0,0);
+     ^
+cur.cpp:98:13: error: 'm' was not declared in this scope
+     Matrix *m = get_init(0,0);
+             ^
+cur.cpp:100:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp: In member function 'virtual void MatrixTest_Read_Test::TestBody()':
+cur.cpp:113:5: error: 'Matrix' was not declared in this scope
+     Matrix m;
+     ^
+cur.cpp:113:12: error: expected ';' before 'm'
+     Matrix m;
+            ^
+cur.cpp:114:5: error: 'm' was not declared in this scope
+     m.read(q);
+     ^
+cur.cpp: In member function 'virtual void MatrixTest_Determinant_Test::TestBody()':
+cur.cpp:121:5: error: 'Matrix' was not declared in this scope
+     Matrix*m = get_init(3, 3);
+     ^
+cur.cpp:121:12: error: 'm' was not declared in this scope
+     Matrix*m = get_init(3, 3);
+            ^
+cur.cpp:131:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+cur.cpp:141:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete m;
+            ^
+./check.sh: line 24: ./a.out: No such file or directory
