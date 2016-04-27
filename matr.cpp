@@ -3,20 +3,20 @@
 
 using namespace std;
 
-class matr
+class Matrix
 {
  int m;
  int n;
  float* data;
 public:
- matr()
+ Matrix()
  {
      m=1;
      n=1;
      data = NULL;
  }
 
- matr(int m_, int n_)
+ Matrix(int m_, int n_)
  {
      m = m_;
      n = n_;
@@ -27,7 +27,7 @@ public:
      }
 
  }
- ~matr()
+ ~Matrix()
  {
      delete data;
  }
@@ -42,7 +42,7 @@ public:
  }
 
 
- matr& operator=(matr& A)
+ Matrix& operator=(Matrix& A)
  {
     m = A.getM();
     n = A.getN();
@@ -75,13 +75,13 @@ public:
          return m;
  }
 
-matr operator+(matr& A)
+Matrix operator+(Matrix& A)
  {
     if((m!=A.getM())||(n!=A.getN()))
 {
         return A;
 }
-        matr* C=new matr(getM(),getN());// = matr(m,n);
+        Matrix* C=new Matrix(getM(),getN());// = matr(m,n);
         for(int i = 0; i < m*n; i++)
         {
           C->data[i] = data[i] + A.get(0,i);
@@ -92,14 +92,14 @@ matr operator+(matr& A)
 
 
 
- matr operator*(matr& A)
+ Matrix operator*(Matrix& A)
  {
     if(getM() !=n)
     {
-        matr* C = new matr();
+        Matrix* C = new Matrix();
         return *C;
     }
-    matr B(getN(), m);
+    Matrix B(getN(), m);
     for(int i = 0; i < getN(); i++)
         for(int j = 0; j < m; j++)
             for(int l = 1; l <= n; l++)
@@ -110,9 +110,9 @@ matr operator+(matr& A)
 
  }
 
- matr operator*(float& l)
+ Matrix operator*(float& l)
  {
-    matr* B = new matr(m,n);
+    Matrix* B = new Matrix(m,n);
     for (int i = 0; i < m*n; i++)
     {
         B->data[i] = l*data[i];
@@ -120,13 +120,13 @@ matr operator+(matr& A)
     return *B;
  }
 
- matr operator-(matr& A)
+ Matrix operator-(Matrix& A)
  {
     if((m!=A.getM())||(n!=A.getN()))
 {
         return A;
 }
-        matr* C=new matr(getM(),getN());// = matr(m,n);
+        Matrix* C=new Matrix(getM(),getN());// = matr(m,n);
         for(int i = 0; i < m*n; i++)
         {
           C->data[i] = data[i] - A.get(0,i);
@@ -135,23 +135,23 @@ matr operator+(matr& A)
  }
 
 
-matr transpose()
+Matrix transpose()
  {
    float* tmp = new float[n*m];
-   matr mat(n,m);
+   Matrix mat(n,m);
    mat.n = n;
    mat.m = m;
    for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
          tmp[j*n + i] = data[i*n + j];
          mat.data = tmp;
-         return matr(mat);
+         return Matrix(mat);
 
  }
 
 virtual float determinant()
 {
-    matr tmp = *this;
+    Matrix tmp = *this;
     float k=0;
     int s;
     for(int l = 0; l < getM(); l++)
@@ -192,7 +192,7 @@ virtual float determinant()
 }
 
 
- virtual matr reverse()
+ virtual Matrix reverse()
 {
 
     if (failed()||(getN()!=getM()))
@@ -207,8 +207,8 @@ virtual float determinant()
             matr A;
             return A;
         }
-    matr A(getN(),getN());
-    matr B(getN()-1,getN()-1);
+   Matrix A(getN(),getN());
+   Matrix B(getN()-1,getN()-1);
     for(int k=0; k<getN(); k++)
     {
         for(int l=0; l<getN(); l++)
@@ -231,7 +231,7 @@ virtual float determinant()
                 A.set(l,k,B.determinant()/D);
             }
 }
-return matr(A);
+return Matrix(A);
 
 }
  ostream& print(ostream& o)
@@ -268,8 +268,8 @@ return matr(A);
 };
 
 
-matr* get_init(int n, int m)
+Matrix* get_init(int n, int m)
 {
-    matr* q = new matr(n, m);
+    Matrix* q = new Matrix(n, m);
             return q;
 }
