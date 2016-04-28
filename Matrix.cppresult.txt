@@ -1,20 +1,3 @@
-In file included from cur.cpp:16:0:
-piterimova/Matrix.cpp:35:15: error: 'matr' does not name a type
-  Matrix(const matr& A)
-               ^
-piterimova/Matrix.cpp:35:21: error: ISO C++ forbids declaration of 'A' with no type [-fpermissive]
-  Matrix(const matr& A)
-                     ^
-piterimova/Matrix.cpp: In constructor 'Matrix::Matrix(const int&)':
-piterimova/Matrix.cpp:37:12: error: request for member 'm' in 'A', which is of non-class type 'const int'
-      m = A.m;
-            ^
-piterimova/Matrix.cpp:38:12: error: request for member 'n' in 'A', which is of non-class type 'const int'
-      n = A.n;
-            ^
-piterimova/Matrix.cpp:41:22: error: request for member 'data' in 'A', which is of non-class type 'const int'
-          data[i] = A.data[i];
-                      ^
 cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
 cur.cpp:47:7: error: no match for 'operator=' (operand types are 'Matrix' and 'Matrix')
      c = m->reverse();
