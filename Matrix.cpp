@@ -32,7 +32,7 @@ public:
      delete data;
  }
 
- Matrix(const matr& A)
+ Matrix(const Matrix& A)
  {
      m = A.m;
      n = A.n;
@@ -81,7 +81,7 @@ Matrix operator+(Matrix& A)
 {
         return A;
 }
-        Matrix* C=new Matrix(getM(),getN());// = matr(m,n);
+        Matrix* C=new Matrix(getM(),getN());// = Matrix(m,n);
         for(int i = 0; i < m*n; i++)
         {
           C->data[i] = data[i] + A.get(0,i);
@@ -126,7 +126,7 @@ Matrix operator+(Matrix& A)
 {
         return A;
 }
-        Matrix* C=new Matrix(getM(),getN());// = matr(m,n);
+        Matrix* C=new Matrix(getM(),getN());// = Matrix(m,n);
         for(int i = 0; i < m*n; i++)
         {
           C->data[i] = data[i] - A.get(0,i);
