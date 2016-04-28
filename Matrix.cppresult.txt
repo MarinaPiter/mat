@@ -15,25 +15,6 @@ piterimova/Matrix.cpp:38:12: error: request for member 'n' in 'A', which is of n
 piterimova/Matrix.cpp:41:22: error: request for member 'data' in 'A', which is of non-class type 'const int'
           data[i] = A.data[i];
                       ^
-piterimova/Matrix.cpp: In member function 'virtual Matrix Matrix::reverse()':
-piterimova/Matrix.cpp:200:9: error: 'matr' was not declared in this scope
-         matr A (0,0);
-         ^
-piterimova/Matrix.cpp:200:14: error: expected ';' before 'A'
-         matr A (0,0);
-              ^
-piterimova/Matrix.cpp:201:16: error: 'A' was not declared in this scope
-         return A;
-                ^
-piterimova/Matrix.cpp:207:13: error: 'matr' was not declared in this scope
-             matr A;
-             ^
-piterimova/Matrix.cpp:207:18: error: expected ';' before 'A'
-             matr A;
-                  ^
-piterimova/Matrix.cpp:208:20: error: 'A' was not declared in this scope
-             return A;
-                    ^
 cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
 cur.cpp:47:7: error: no match for 'operator=' (operand types are 'Matrix' and 'Matrix')
      c = m->reverse();
