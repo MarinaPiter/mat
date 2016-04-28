@@ -197,14 +197,14 @@ virtual float determinant()
 
     if (failed()||(getN()!=getM()))
     {
-        matr A (0,0);
+        Matrix A (0,0);
         return A;
     }
     int g;
     float D =this->determinant();
     if(D == 0)
         {
-            matr A;
+            Matrix A;
             return A;
         }
    Matrix A(getN(),getN());
