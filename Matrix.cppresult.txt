@@ -1,11 +1,173 @@
-cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
-cur.cpp:47:7: error: no match for 'operator=' (operand types are 'Matrix' and 'Matrix')
-     c = m->reverse();
-       ^
-cur.cpp:47:7: note: candidate is:
-In file included from cur.cpp:16:0:
-piterimova/Matrix.cpp:45:11: note: Matrix& Matrix::operator=(Matrix&)
-   Matrix& operator=(Matrix& A)
-           ^
-piterimova/Matrix.cpp:45:11: note:   no known conversion for argument 1 from 'Matrix' to 'Matrix&'
-./check.sh: line 24: ./a.out: No such file or directory
+[==========] Running 7 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 7 tests from MatrixTest
+[ RUN      ] MatrixTest.GetNM
+[       OK ] MatrixTest.GetNM
+[ RUN      ] MatrixTest.Reverse
+
+
+1
+1000010000100001000001000010000101000000001000010100001000000001010000100001000000000100001000011000010000100001100000000010000110000010000000011000001000010000000010000010000110000000001000011000010000100001100001000000000110000100000100000000100001000001100000000100000110000100000000011000010000100001100001000010000000001000010000101000000001000010100001000000001010000100001000001000010000100001cur.cpp:38: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(i == j)
+Which is: 1
+cur.cpp:38: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(i == j)
+Which is: 1
+cur.cpp:38: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(i == j)
+Which is: 1
+cur.cpp:38: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(i == j)
+Which is: 1
+cur.cpp:38: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(i == j)
+Which is: 1
+
+1 0 0 0 
+2 1 0 0 
+3 2 1 0 
+4 3 2 1 
+
+1
+123012001023012001013002001012001000234012001134012001124002001123001000234123001134023001124013001123012000234123012134023012124013002123012001
+0 0 0 0 
+0 0 0 0 
+0 0 0 0 
+0 0 0 0 index: 0
+cur.cpp:52: Failure
+Value of: round(c.get(i,i))
+  Actual: 0
+Expected: 1
+index: 1
+cur.cpp:52: Failure
+Value of: round(c.get(i,i))
+  Actual: 0
+Expected: 1
+index: 2
+cur.cpp:52: Failure
+Value of: round(c.get(i,i))
+  Actual: 0
+Expected: 1
+index: 3
+cur.cpp:52: Failure
+Value of: round(c.get(i,i))
+  Actual: 0
+Expected: 1
+cur.cpp:55: Failure
+Value of: round(c.get(i+1,i))
+  Actual: 0
+Expected: -2
+cur.cpp:55: Failure
+Value of: round(c.get(i+1,i))
+  Actual: 0
+Expected: -2
+cur.cpp:55: Failure
+Value of: round(c.get(i+1,i))
+  Actual: 0
+Expected: -2
+cur.cpp:57: Failure
+Value of: round(c.get(i+2,i))
+  Actual: 0
+Expected: 1
+cur.cpp:57: Failure
+Value of: round(c.get(i+2,i))
+  Actual: 0
+Expected: 1
+[  FAILED  ] MatrixTest.Reverse
+[ RUN      ] MatrixTest.Transpose
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 4
+Expected: (int)(cc++)
+Which is: 1
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 8
+Expected: (int)(cc++)
+Which is: 2
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(cc++)
+Which is: 3
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 3
+Expected: (int)(cc++)
+Which is: 4
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 7
+Expected: (int)(cc++)
+Which is: 5
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 11
+Expected: (int)(cc++)
+Which is: 6
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 4
+Expected: (int)(cc++)
+Which is: 7
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 6
+Expected: (int)(cc++)
+Which is: 8
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 10
+Expected: (int)(cc++)
+Which is: 9
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 0
+Expected: (int)(cc++)
+Which is: 10
+cur.cpp:78: Failure
+Value of: (int)(c.get(i,j)+0.5)
+  Actual: 8
+Expected: (int)(cc++)
+Which is: 11
+[  FAILED  ] MatrixTest.Transpose
+[ RUN      ] MatrixTest.SetGet
+cur.cpp:92: Failure
+Value of: (int)(m->get(j,i)+0.5)
+  Actual: 9
+Expected: (int)(c++)
+Which is: 1
+cur.cpp:92: Failure
+Value of: (int)(m->get(j,i)+0.5)
+  Actual: 10
+Expected: (int)(c++)
+Which is: 2
+[  FAILED  ] MatrixTest.SetGet
+[ RUN      ] MatrixTest.FailedM
+[       OK ] MatrixTest.FailedM
+[ RUN      ] MatrixTest.Read
+[       OK ] MatrixTest.Read
+[ RUN      ] MatrixTest.Determinant
+
+
+1
+[       OK ] MatrixTest.Determinant
+[----------] Global test environment tear-down
+[==========] 7 tests from 1 test case ran.
+[  PASSED  ] 4 tests.
+[  FAILED  ] 3 tests, listed below:
+[  FAILED  ] MatrixTest.Reverse
+[  FAILED  ] MatrixTest.Transpose
+[  FAILED  ] MatrixTest.SetGet
+
+ 3 FAILED TESTS
