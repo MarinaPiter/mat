@@ -42,7 +42,7 @@ public:
  }
 
 
- Matrix& operator=(Matrix& A)
+ Matrix operator=(Matrix& A)
  {
     m = A.getM();
     n = A.getN();
