@@ -47,8 +47,8 @@ public:
      m=A.m;
      n=A.n;
      delete data;
-     data=new float[m*n];
-    for(int i = 0; i < A.getN()*A.getN(); i++)
+     data=new float[A.getN()*A.getM()];
+    for(int i = 0; i < A.getM()*A.getN(); i++)
       set(0,i,A.get(0,i));
     
     return *this;
