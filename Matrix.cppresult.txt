@@ -1,3 +1,9 @@
+In file included from cur.cpp:16:0:
+piterimova/Matrix.cpp: In member function 'Matrix Matrix::operator=(Matrix&)':
+piterimova/Matrix.cpp:50:33: error: invalid use of member function (did you forget the '()' ?)
+     for(int i = 0; i < A.getN*A.getN; i++)
+                                 ^
+piterimova/Matrix.cpp:50:33: error: invalid use of member function (did you forget the '()' ?)
 cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
 cur.cpp:47:7: error: no match for 'operator=' (operand types are 'Matrix' and 'Matrix')
      c = m->reverse();
