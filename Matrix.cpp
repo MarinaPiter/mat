@@ -42,16 +42,16 @@ public:
  }
 
 
- Matrix operator=(Matrix& A)
+  Matrix& operator=(Matrix& A)
  {
-    delete data;
-    data = new float[m*n];
-    Matrix(A.getM(),A.getN());
-    for(int i = 0; i < A.getN*A.getN; i++)
-    {
-     A.set(i,0,A.get(i,0));
-    }
-    return Matrix(A);
+     m=A.m;
+     n=A.n;
+     delete data;
+     data=new float[m*n];
+    for(int i = 0; i < A.getN()*A.getN(); i++)
+      set(0,i,A.get(0,i));
+    
+    return *this;
  }
 
  float get(int i, int j)
