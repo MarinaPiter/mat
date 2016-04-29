@@ -44,25 +44,24 @@ public:
 
  Matrix operator=(Matrix& A)
  {
-    m = A.getM();
-    n = A.getN();
     delete data;
     data = new float[m*n];
-    for(int i = 0; i < m*n; i++)
+    Matrix(A.getM(),A.getN());
+    for(int i = 0; i < A.getN*A.getN; i++)
     {
-      data[i] = A.get(0,i);
+     A.set(i,0,A.get(i,0));
     }
-    return *this;
+    return Matrix(A);
  }
 
  float get(int i, int j)
  {
-     return data[j*n+i];
+     return data[i*m+j];
  }
 
  void set(int i, int j, float d)
  {
-     this->data[j*m+i] = d;
+     this->data[i*m+j] = d;
  }
 
  virtual int getN()
