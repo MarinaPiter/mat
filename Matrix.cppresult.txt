@@ -1,17 +1,11 @@
-In file included from cur.cpp:16:0:
-piterimova/Matrix.cpp: In member function 'Matrix Matrix::operator=(Matrix&)':
-piterimova/Matrix.cpp:50:33: error: invalid use of member function (did you forget the '()' ?)
-     for(int i = 0; i < A.getN*A.getN; i++)
-                                 ^
-piterimova/Matrix.cpp:50:33: error: invalid use of member function (did you forget the '()' ?)
 cur.cpp: In member function 'virtual void MatrixTest_Reverse_Test::TestBody()':
 cur.cpp:47:7: error: no match for 'operator=' (operand types are 'Matrix' and 'Matrix')
      c = m->reverse();
        ^
 cur.cpp:47:7: note: candidate is:
 In file included from cur.cpp:16:0:
-piterimova/Matrix.cpp:45:9: note: Matrix Matrix::operator=(Matrix&)
-  Matrix operator=(Matrix& A)
-         ^
-piterimova/Matrix.cpp:45:9: note:   no known conversion for argument 1 from 'Matrix' to 'Matrix&'
+piterimova/Matrix.cpp:45:11: note: Matrix& Matrix::operator=(Matrix&)
+   Matrix& operator=(Matrix& A)
+           ^
+piterimova/Matrix.cpp:45:11: note:   no known conversion for argument 1 from 'Matrix' to 'Matrix&'
 ./check.sh: line 24: ./a.out: No such file or directory
