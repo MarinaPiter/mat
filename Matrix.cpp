@@ -42,26 +42,27 @@ public:
  }
 
 
-  Matrix operator=(Matrix A)
+ Matrix operator=(Matrix& A)
  {
      m=A.m;
      n=A.n;
-     delete data;
-     data=new float[A.getN()*A.getM()];
-    for(int i = 0; i < A.getM()*A.getN(); i++)
-      set(0,i,A.get(0,i));
-    
+    delete data;
+     data=new float[m*n];
+    for(int i = 0; i < A.getN()*A.getN(); i++)
+    {
+     set(i,0,A.get(i,0));
+    }
     return *this;
  }
 
  float get(int i, int j)
  {
-     return data[i*m+j];
+     return data[i*n+j];
  }
 
  void set(int i, int j, float d)
  {
-     this->data[i*m+j] = d;
+     this->data[i*n+j] = d;
  }
 
  virtual int getN()
@@ -71,7 +72,7 @@ public:
 
  virtual int getM()
  {
-         return m;
+     return m;
  }
 
 Matrix operator+(Matrix& A)
@@ -142,7 +143,7 @@ Matrix transpose()
    mat.m = m;
    for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
-         tmp[j*n + i] = data[i*n + j];
+         tmp[i*n + j] = data[i*n + j];
          mat.data = tmp;
          return Matrix(mat);
 
@@ -182,7 +183,7 @@ virtual float determinant()
                     tmp.set(j,i,tmp.get(j,i)-k*tmp.get(l,i));
             }
     }
-  
+
     float det = get(0,0);
     for(int i = 1; i < getN(); i++)
       det *=tmp.get(i,i);
@@ -272,3 +273,5 @@ Matrix* get_init(int n, int m)
     Matrix* q = new Matrix(n, m);
             return q;
 }
+
+
