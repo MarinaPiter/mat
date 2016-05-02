@@ -57,12 +57,12 @@ public:
 
  float get(int i, int j)
  {
-     return data[i*n+j];
+     return data[i*m+j];
  }
 
  void set(int i, int j, float d)
  {
-     this->data[i*n+j] = d;
+     this->data[i*m+j] = d;
  }
 
  virtual int getN()
@@ -104,7 +104,7 @@ Matrix operator+(Matrix& A)
         for(int j = 0; j < m; j++)
             for(int l = 1; l <= n; l++)
             {
-                B.data[i*n+j] += get(i,j)*A.data[l*n+j];
+                B.data[j*n+i] += get(i,j)*A.data[l*n+j];
             }
     return B;
 
@@ -143,7 +143,7 @@ Matrix transpose()
    mat.m = m;
    for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
-         tmp[i*n + j] = data[i*n + j];
+         tmp[i*m + j] = data[i*m + j];
          mat.data = tmp;
          return Matrix(mat);
 
