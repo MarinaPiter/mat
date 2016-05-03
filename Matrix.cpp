@@ -57,12 +57,12 @@ public:
 
  float get(int i, int j)
  {
-     return data[i*m+j];
+     return data[i+j*m];
  }
 
  void set(int i, int j, float d)
  {
-     this->data[i*m+j] = d;
+     this->data[i+j*m] = d;
  }
 
  virtual int getN()
@@ -84,7 +84,7 @@ Matrix operator+(Matrix& A)
         Matrix* C=new Matrix(getM(),getN());// = Matrix(m,n);
         for(int i = 0; i < m*n; i++)
         {
-          C->data[i] = data[i] + A.get(0,i);
+          C->data[i] = data[i] + A.get(i,0);
         }
     return *C;
  }
