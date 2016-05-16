@@ -143,7 +143,7 @@ Matrix transpose()
    mat.m = m;
    for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
-         tmp[i*m + j] = data[i*m + j];
+         tmp[i*m + j] = data[j*m + i];
          mat.data = tmp;
          return Matrix(mat);
 
